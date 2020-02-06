@@ -1,8 +1,8 @@
 # 前言
 
-本模板（包括thesis-swufe.cls和thesis-swufe.bst）完全复制自[swufe模板]((https://github.com/sierxue/ThesisSWUFE)
+本模板（包括thesis-swufe.cls和thesis-swufe.bst）完全复制自[swufe模板](https://github.com/sierxue/ThesisSWUFE)
 
-感谢[swufe模板]((https://github.com/sierxue/ThesisSWUFE)的开发/维护者Pro.Gan提供的补充信息。
+感谢[swufe模板](https://github.com/sierxue/ThesisSWUFE)的开发/维护者Pro.Gan提供的补充信息。
 
 - 几个注意事项
 
@@ -14,7 +14,7 @@
 
 4. 经测试，bookdown预定义好的`theorem`block与本模板有冲突，需要使用定理的，建议阅读[sierxue/ThesisSWUFE](https://github.com/sierxue/ThesisSWUFE)的使用问帮
 
-5. 更详细的注意事项请移步[sierxue/ThesisSWUFE]((https://github.com/sierxue/ThesisSWUFE)
+5. 更详细的注意事项请移步[sierxue/ThesisSWUFE](https://github.com/sierxue/ThesisSWUFE)
 
 6. 本模板亲测在win10和centos7（centos会出现字体缺失，需手动安装对应字体）下编译通过。
 
