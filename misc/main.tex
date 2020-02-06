@@ -1,0 +1,132 @@
+% XeLaTeX can use any Mac OS X font. See the setromanfont command below.
+% Input to XeLaTeX is full Unicode, so Unicode characters can be typed directly into the source.
+
+% The next lines tell TeXShop to typeset with xelatex, and to open and save the source with Unicode encoding.
+
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[$if(classoption)$$classoption$,$endif$]{thesis-swufe}
+
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+
+\begin{document}
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+%f封面
+%\makecover
+
+\includepdf[pages={1-3}]{./pic/pdf/frontcover.pdf}
+
+
+%中文摘要
+% \include{misc/chineseabstract}
+$if(chineseabstract)$
+\begin{chineseabstract}
+  $chineseabstract$
+  
+  
+  %摘要关键词：本科研究生都需要填写！
+  $if(baseinfo.chinesekeyword)$
+  \chinesekeyword{
+  $for(baseinfo.chinesekeyword)$
+  $baseinfo.chinesekeyword$
+  $endfor$
+  } %中文摘要关键词，词间间隔3格，用{ }{ }{ }实现，方法不唯一
+  $endif$
+\end{chineseabstract}
+$endif$
+
+%英文摘要
+% \include{misc/englishabstract}
+$if(englishabstract)$
+\begin{englishabstract}
+  $englishabstract$
+  
+  
+  $if(baseinfo.englishkeyword)$
+  \englishkeyword{
+  $for(baseinfo.englishkeyword)$
+  $baseinfo.englishkeyword$
+  $endfor$
+  } %外文摘要关键词，互相之间间隔3格
+  $endif$
+\end{englishabstract}
+$endif$
+
+%\frontmatter
+
+%正文目录
+\thesistableofcontents
+%插图目录
+%\listoffigures
+%表格目录
+%\listoftables
+
+
+%\mainmatter\clearpage
+%\pagestyle{fancy}
+
+%从\thesischapterexordium里提取出来，避免第一个章节被锁死成绪论
+\checkoddpage
+\ifoddpage
+    \blankpage
+  \else
+    \newpage
+\fi
+  \newpage
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+\standardhead
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%正文章节
+$body$
+
+%\newpage
+
+% 致谢
+
+$if(acknowledgement)$
+\thesisacknowledgement
+$acknowledgement$
+$endif$
+
+$if(bibliography_all)$
+\nocite{*}
+$endif$
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+\bibliographystyle{thesis-swufe}
+
+%附录
+
+$if(appendix)$
+  \include{misc/appendix}
+$endif$
+
+\thesisloadaccomplish{publications}
+
+\includepdf[pages={1}]{./pic/pdf/backcover.pdf}
+
+$if(translate_original)$
+  \include{misc/translate_original}
+$endif$
+
+
+$if(translate_chinese)$
+  \include{misc/translate_chinese}
+$endif$
+
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+\end{document}

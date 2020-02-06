@@ -1,0 +1,3 @@
+book_filename: "SWUFE"
+#rmd_files: ["index.Rmd", "body.Rmd"]
+delete_merged_file: true

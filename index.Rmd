@@ -1,0 +1,188 @@
+---
+site: bookdown::bookdown_site
+documentclass: book
+output:
+  bookdown::pdf_book:
+    includes:
+      in_header: misc/preamble.tex
+    latex_engine: xelatex
+    dev: "cairo_pdf"
+    keep_tex: true
+    pandoc_args: "--top-level-division=chapter"
+    toc_depth: 3
+    template: misc/main.tex
+    quote_footer: ["\\begin{flushright}", "\\end{flushright}"]
+# bachelor、master、promaster、doctor、engdoctor
+classoption: "master"
+chineseabstract: "中文摘要: 这里是中文摘要"
+englishabstract: "This is a English abstract."
+acknowledgement: "这里是致谢：在攻读硕士/博士学位期间，首先衷心感谢我的导师XXX"  
+baseinfo:
+  chinesekeyword: ["贸易战, 经济， 很关键"]
+  englishkeyword: ["Trade War, economics, very important"]
+bibliography: reference.bib
+bibliography_all: true
+link-citations: true
+appendix: false
+translate_original: false
+translate_chinese: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+options(knitr.graphics.auto_pdf = TRUE, tinytex.engine_args ='-shell-escape') # 如果存在图片的同名pdf格式则自动优先采用pdf（因为质量高）（对latex有效）
+```
+
+# bookdown介绍
+
+This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+
+The **bookdown** package can be installed from CRAN or Github:
+
+
+Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+
+每一个Rmd文件只包含一章内容，每一章由一个一级标题`#`来指定。
+
+To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.name/tinytex/>.
+
+你需要安装XeLaTeX来将这个示例编译为PDF，推荐你去 [这个网站](https://yihui.name/tinytex/) 安装TinyTex，它是包含XeLaTex的。
+
+
+
+# 引言 {#intro}
+
+You can label chapter and section titles using `{#label}` after them, e.g., we can reference \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., \@ref(methods).
+
+Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+
+
+```{r nice-fig, fig.cap='气温和气压关系图', out.width='80%', fig.asp=.75, fig.align='center'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, type = 'b', pch = 19)
+```
+
+
+Reference a figure by its code chunk label with the `fig:` prefix, e.g., see 图 \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see 表 \@ref(tab:nice-tab).
+
+
+```{r nice-tab, tidy=FALSE}
+knitr::kable(
+  head(iris, 20), caption = '示例表格',
+  booktabs = TRUE
+)
+```
+
+
+You can write citations, too. For example, we are using the **bookdown** package in this sample book, which was built on top of R Markdown and **knitr**.
+
+
+# 方法{#methods}
+
+## 表格
+
+```{r testTable, echo = F}
+knitr::kable(
+  head(mtcars[, 1:8]),
+  caption = '我是测试表格'
+)
+```
+
+这儿是对表格的引用表格\@ref(tab:testTable)
+
+## 定理
+
+<!--
+```{lemma, yourLable, echo = T, name="the name of the theorem"}
+这儿是定理的主体
+```
+
+这儿是对定理的引用\@ref(thm:yourLable)
+
+-->
+
+<!--theorem 环境由于thesis-swufe类对theorem命令的重新定义导致失效-->
+
+
+## 脚注
+
+
+这里是脚注[^footnote1]
+
+[^footnote1]: 这里是脚注的内容
+
+<!--
+bookdown风格的脚注：
+
+文字^[脚注内容]
+-->
+
+## 图
+
+
+```{r label = fig-1,eval = T, echo = F, fig.cap = "信任率的影响因素", fig.align = "center", out.width='80%'}
+knitr::include_graphics(rep("pic/BP-2019-04.png", 1))
+```
+
+
+
+<!--
+fig.asp = 0.5   图片height/width的比例
+fig.width = xx inch
+fig.height = xx inch
+fig.show = 'hold'  如果想把几张图放在一起
+
+
+out.width = '30%'
+out.height 
+
+-->
+
+
+<!--![信任率的影响因素](literatures/literature_pngs/Liuyingxi_Liangjie_11_B.png){#fig:fig_1}-->
+
+这儿是对图片的引用\@ref(fig:fig-1)
+
+
+## 公式
+
+
+这里是公式
+
+输出word时的公式编号和交叉引用看来是个难题
+
+
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  (\#eq:binom)
+\end{equation}
+
+
+
+\@ref(eq:binom)
+
+
+
+
+
+# 毫无创意的文章主体
+
+喵喵喵，论猫咪的产后护理，这是很有科学依据的
+
+
+# 一些应用例子
+
+这一章是应用例子
+
+
+# 总结
+
+\cite{Wanglinyu_Guolei_2019}
+
+\citing{Wanglinyu_Guolei_2019}
+
+
+
+
+`r if (knitr:::is_html_output()) '# 参考文献 {#references .unnumbered}'`
+
